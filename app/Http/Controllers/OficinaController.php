@@ -10,7 +10,8 @@ class OficinaController extends Controller
   
     public function index(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+      //  if (!$request->ajax()) return redirect('/');
+
         $oficinas = Oficina::paginate(10);
         return [
             'pagination' => [
@@ -27,7 +28,7 @@ class OficinaController extends Controller
 
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+    //    if (!$request->ajax()) return redirect('/');
         $oficinas = new Oficina();
         $oficinas-> nombre_oficina = $request-> nombre_oficina;
         $oficinas-> responsable = $request-> responsable;
@@ -37,7 +38,7 @@ class OficinaController extends Controller
 
     public function update(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+      //  if (!$request->ajax()) return redirect('/');
         $oficinas = Oficina::findOrFail($request->id);
         $oficinas-> nombre_oficina = $request-> nombre_oficina;
         $oficinas-> responsable = $request-> responsable;

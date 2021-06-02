@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Persona;
 use Illuminate\Http\Request;
 
@@ -10,7 +9,7 @@ class PersonaController extends Controller
          
     public function index(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+      //  if (!$request->ajax()) return redirect('/');
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;

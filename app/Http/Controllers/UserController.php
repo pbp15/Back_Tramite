@@ -8,11 +8,12 @@ use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+        //if (!$request->ajax()) return redirect('/');
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
@@ -45,7 +46,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-       if (!$request->ajax()) return redirect('/');
+     //  if (!$request->ajax()) return redirect('/');
 
         try{
             DB::beginTransaction();
@@ -68,7 +69,7 @@ class UserController extends Controller
             $user->save();
 
             DB::commit();
-        } catch (Exception $e){
+        }  catch (Exception $e){
             DB::rollBack();
         }
     }
@@ -79,7 +80,7 @@ class UserController extends Controller
 
         try{
             DB::beginTransaction();
-
+            
             $user = User::findOrFail($request->id);
             $persona = Persona::findOrFail($user->id);
             $persona->nombre = $request->nombre;

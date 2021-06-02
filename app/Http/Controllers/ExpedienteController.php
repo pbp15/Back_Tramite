@@ -14,7 +14,7 @@ class ExpedienteController extends Controller
 
     public function index(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+       // if (!$request->ajax()) return redirect('/');
         $expedientes = DB::table('expedientes as e')
                     ->join('user_expedientes as ue','e.id','=','ue.idexpediente')
                     ->join('users as u','u.id','=','ue.iduser')
