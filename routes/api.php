@@ -7,6 +7,7 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ExpedienteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
