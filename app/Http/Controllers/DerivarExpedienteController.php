@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User_Expediente;
+use App\Models\DerivarExpediente;
 use Illuminate\Http\Request;
 
-class UserExpedienteController extends Controller
+class DerivarExpedienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class UserExpedienteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User_Expediente  $user_Expediente
+     * @param  \App\Models\DerivarExpediente  $derivarExpediente
      * @return \Illuminate\Http\Response
      */
-    public function show(User_Expediente $user_Expediente)
+    public function show(DerivarExpediente $derivarExpediente)
     {
         //
     }
@@ -52,10 +52,10 @@ class UserExpedienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User_Expediente  $user_Expediente
+     * @param  \App\Models\DerivarExpediente  $derivarExpediente
      * @return \Illuminate\Http\Response
      */
-    public function edit(User_Expediente $user_Expediente)
+    public function edit(DerivarExpediente $derivarExpediente)
     {
         //
     }
@@ -64,10 +64,10 @@ class UserExpedienteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User_Expediente  $user_Expediente
+     * @param  \App\Models\DerivarExpediente  $derivarExpediente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User_Expediente $user_Expediente)
+    public function update(Request $request, DerivarExpediente $derivarExpediente)
     {
         //
     }
@@ -75,10 +75,10 @@ class UserExpedienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User_Expediente  $user_Expediente
+     * @param  \App\Models\DerivarExpediente  $derivarExpediente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User_Expediente $user_Expediente)
+    public function destroy(DerivarExpediente $derivarExpediente)
     {
         //
     }

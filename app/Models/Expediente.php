@@ -14,7 +14,6 @@ class Expediente extends Model
         'cabecera_documento',
         'tipo_documento',
         'asunto',
-        'prioridad',
         'nro_folios',
         'file',
         'fecha_tramite',

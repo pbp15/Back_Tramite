@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use App\Models\Expediente;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\User_Expediente;
 use Illuminate\Support\Facades\DB;
 
 class ExpedienteController extends Controller
@@ -15,12 +14,11 @@ class ExpedienteController extends Controller
     public function index(Request $request)
     {
        // if (!$request->ajax()) return redirect('/');
-        $expedientes = DB::table('expedientes as e')
-                    ->join('user_expedientes as ue','e.id','=','ue.idexpediente')
-                    ->join('users as u','u.id','=','ue.iduser')
+        $expedientes = DB::table('expedientes as e') 
+                    ->join('users as u','u.id', '=','e.iduser')
                     ->join('personas as p','p.id','=','u.id')
-                    ->select('e.codigo_expediente','p.nombre','e.cabecera_documento','e.tipo_documento','e.asunto','e.prioridad','e.nro_folios','e.file','ue.fecha','e.condicion')
-                    ->orderBy('ue.id','desc')
+                    ->select('e.codigo_expediente','p.nombre','e.cabecera_documento','e.tipo_documento','e.asunto','e.nro_folios','e.file','e.fecha_tramite','e.condicion')
+                    ->orderBy('e.id','desc')
                     ->paginate(10);
         
         return [
@@ -62,10 +60,10 @@ class ExpedienteController extends Controller
         }
 
         $expedientes-> codigo_expediente = $codigo;
+        $expedientes-> iduser = auth()->user()->id;
         $expedientes-> cabecera_documento = $request -> cabecera_documento;
         $expedientes-> tipo_documento = $request -> tipo_documento;
         $expedientes-> asunto = $request -> asunto;
-        $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
         //Inicio expediente
         $exploded = explode(',', $request->file);
@@ -88,13 +86,13 @@ class ExpedienteController extends Controller
         $expedientes-> save();
 
         /*Tabla intermedia usuario_expediente*/
-        $userExpedientes = new User_Expediente();
-        $userExpedientes-> iduser = auth()->user()->id;
-        $userExpedientes-> idexpediente = $expedientes-> id;
-        $userExpedientes-> idoficina = '1';
-        $userExpedientes-> estado = 'Enviado';
-        $userExpedientes-> fecha = $mytime;
-        $userExpedientes-> save();
+        // $userExpedientes = new User_Expediente();
+        // $userExpedientes->  iduser = auth()->user()->id;
+        // $userExpedientes-> idexpediente = $expedientes-> id;
+        // $userExpedientes-> idoficina = '1';
+        // $userExpedientes-> estado = 'Enviado';
+        // $userExpedientes-> fecha = $mytime;
+        // $userExpedientes-> save();
 
     }
 

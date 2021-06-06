@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserExpedientesTable extends Migration
+class CreateDerivarExpedientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateUserExpedientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user__expedientes', function (Blueprint $table) {
-            $table->id();         
-            $table->integer('iduser')->unsigned();
-            $table->foreign('iduser')->references('id')->on('users');
-
+        Schema::create('derivar_expedientes', function (Blueprint $table) {
+            $table->id();  
             $table->integer('idoficina')->unsigned();
-            $table->foreign('idoficina')->references('id')->on('oficinas');
-            
+            $table->foreign('idoficina')->references('id')->on('oficinas');            
             $table->integer('idexpediente')->unsigned();
             $table->foreign('idexpediente')->references('id')->on('expedientes');
-
-
             $table->string('estado',45);
-            $table->dateTime('fecha'); 
+            $table->string('prioridad',45)->nullable();
+            $table->string('observacion',45);
+            $table->dateTime('fecha_derivado'); 
         });
     }
 
@@ -37,6 +33,6 @@ class CreateUserExpedientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user__expedientes');
+        Schema::dropIfExists('derivar_expedientes');
     }
 }
