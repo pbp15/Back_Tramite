@@ -11,11 +11,16 @@ class Oficina extends Model
 
     protected $fillable = 
     [
-        'nombre_oficina',
-        'responsable',
+        'gerencias',
+        'subgerencias',
+        'iduser',
         'condicion'
     ];
-    
+    public function users()
+    {
+        return $this->hasMany(User::class);     
+    }   
+
     public function  expedientes()
     {
         return $this->hasMany(Expediente::class);     

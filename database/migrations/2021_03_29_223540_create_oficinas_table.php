@@ -15,13 +15,15 @@ class CreateOficinasTable extends Migration
     {
         Schema::create('oficinas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_oficina',45);
-            $table->string('responsable',45);
+            $table->string('gerencia',100);
+            $table->string('subgerencia',100);
+            $table->integer('iduser')->unsigned();
+            $table->foreign('iduser')->references('id')->on('users');
             $table->boolean('condicion')->default(1);
             $table->timestamps(); 
         });
     }
-
+ 
     /**
      * Reverse the migrations.
      *

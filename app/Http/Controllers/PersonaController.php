@@ -44,7 +44,6 @@ class PersonaController extends Controller
         $persona->num_documento = $request->num_documento;
         $persona->direccion = $request->direccion;
         $persona->telefono = $request->telefono;
-        $persona->email = $request->email;
         $persona->save();
 
 
@@ -59,7 +58,6 @@ class PersonaController extends Controller
         $persona->num_documento = $request->num_documento;
         $persona->direccion = $request->direccion;
         $persona->telefono = $request->telefono;
-        $persona->email = $request->email;
         $persona->save();
 
     }

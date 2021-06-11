@@ -15,7 +15,7 @@ class User extends Authenticatable
  
 
     protected $fillable = [
-        'id', 'usuario', 'password','condicion','idrol'
+        'id', 'email', 'password','condicion','idrol', 
     ];
 
     public $timestamps = false;
@@ -33,7 +33,9 @@ class User extends Authenticatable
         public function rol(){
             return $this->belongsTo(Role::class);
         }
-
+        public function oficina(){
+            return $this->belongsTo(Oficina::class);
+        }        
         public function persona(){
             return $this->belongsTo(Persona::class);
         }

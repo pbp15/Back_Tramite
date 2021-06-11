@@ -20,7 +20,6 @@ class CreatePersonasTable extends Migration
                 $table->string('num_documento',10);
                 $table->string('direccion',70);
                 $table->string('telefono',9);
-                $table->string('email',20);
                 $table->timestamps();
             });
         }

@@ -21,13 +21,13 @@ class UserController extends Controller
         if ($buscar==''){
             $personas = User::join('personas','users.id','=','personas.id')
             ->join('roles','users.idrol','=','roles.id')
-            ->select('personas.id','personas.nombre','personas.tipo_documento','personas.num_documento','personas.direccion','personas.telefono','personas.email','users.usuario','users.password','users.condicion','users.idrol','roles.nombre as rol')
+            ->select('personas.id','personas.nombre','personas.tipo_documento','personas.num_documento','personas.direccion','personas.telefono','users.email','users.password','users.condicion','users.idrol','roles.nombre as rol')
             ->orderBy('personas.id', 'desc')->paginate(3);
         }
         else{
             $personas = User::join('personas','users.id','=','personas.id')
             ->join('roles','users.idrol','=','roles.id')
-            ->select('personas.id','personas.nombre','personas.tipo_documento','personas.num_documento','personas.direccion','personas.telefono','personas.email','users.usuario','users.password','users.condicion','users.idrol','roles.nombre as rol')
+            ->select('personas.id','personas.nombre','personas.tipo_documento','personas.num_documento','personas.direccion','personas.telefono','users.email','users.password','users.condicion','users.idrol','roles.nombre as rol')
             ->where('personas.'.$criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
         }
         
@@ -57,13 +57,12 @@ class UserController extends Controller
             $persona->num_documento = $request->num_documento;
             $persona->direccion = $request->direccion;
             $persona->telefono = $request->telefono;
-            $persona->email = $request->email;
             $persona->save();
 
             $user = new User();
             $user->id = $persona->id;
             $user->idrol = $request->idrol;
-            $user->usuario = $request->usuario;
+            $user->email = $request->email;
             $user->password = bcrypt( $request->password);
             $user->condicion = '1';            
             $user->save();
@@ -88,11 +87,10 @@ class UserController extends Controller
             $persona->num_documento = $request->num_documento;
             $persona->direccion = $request->direccion;
             $persona->telefono = $request->telefono;
-            $persona->email = $request->email;
             $persona->save();
 
             
-            $user->usuario = $request->usuario;
+            $user->email = $request->email;
             $user->password = bcrypt( $request->password);
             $user->condicion = '1';
             $user->idrol = $request->idrol;

@@ -7,6 +7,7 @@ use App\Models\Expediente;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\DerivarExpediente;
 
 class ExpedienteController extends Controller
 {
@@ -36,10 +37,9 @@ class ExpedienteController extends Controller
 
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+       // if (!$request->ajax()) return redirect('/');
         /*Tabla expedientes*/
         $expedientes = new Expediente();
-
         //codigo de expediente
         $id = DB::table('expedientes as e')
             ->select(DB::raw('max(id) as id'))
@@ -86,13 +86,12 @@ class ExpedienteController extends Controller
         $expedientes-> save();
 
         /*Tabla intermedia usuario_expediente*/
-        // $userExpedientes = new User_Expediente();
-        // $userExpedientes->  iduser = auth()->user()->id;
-        // $userExpedientes-> idexpediente = $expedientes-> id;
-        // $userExpedientes-> idoficina = '1';
-        // $userExpedientes-> estado = 'Enviado';
-        // $userExpedientes-> fecha = $mytime;
-        // $userExpedientes-> save();
+        $derivarExpedientes = new DerivarExpediente();
+        $derivarExpedientes-> idexpediente = $expedientes-> id;
+        $derivarExpedientes-> idoficina = '1';
+        $derivarExpedientes-> estado = 'Enviado';
+        $derivarExpedientes-> fecha_derivado = $mytime;
+        $derivarExpedientes-> save();
 
     }
 

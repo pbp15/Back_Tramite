@@ -14,23 +14,23 @@ class LoginController extends Controller
     public function login(Request $request){
        
       $this->validateLogin($request);
-      if(Auth::attempt(['usuario' => $request->usuario, 'password' => $request->password, 'condicion'=>1])){
+      if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'condicion'=>1])){
         
-        $token = $request->user()->createToken($request->usuario);
+        $token = $request->user()->createToken($request->email);
         
         return response()->json([
-            'usuario'=>$request->usuario,
+            'email'=>$request->email,
             'token' => $token->plainTextToken,
             ]);
       }
   
-      return back()->withErrors(['usuario' => trans('auth.failed')])
-      ->withInput(request(['usuario']));
+      return back()->withErrors(['email' => trans('auth.failed')])
+      ->withInput(request(['email']));
     }
   
     protected function validateLogin(Request $request){
           $this->validate($request,[
-            'usuario' => 'required|string',
+            'email' => 'required|string',
             'password'=> 'required|string'
         ]);
     }
